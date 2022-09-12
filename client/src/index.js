@@ -1,22 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';  
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import reportWebVitals from "./reportWebVitals";
 
 /** PAGE IMPORTS */
-import App from './pages/Login';
-import Register from './pages/Registration'
+import App from "./pages/Login";
+import Register from "./pages/Registration";
 
 /** GLOBAL CSS */
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path='/' element={<App/>}/>
-        <Route path='/register' element={<Register/>}/>
+        <Route path="/" element={<App />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   </React.StrictMode>
