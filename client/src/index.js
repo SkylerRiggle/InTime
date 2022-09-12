@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';  
+import reportWebVitals from './reportWebVitals';
+
+/** PAGE IMPORTS */
 import App from './pages/Login';
 import Register from './pages/Registration'
-import reportWebVitals from './reportWebVitals';
+
+/** GLOBAL CSS */
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
