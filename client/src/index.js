@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 /** PAGE IMPORTS */
-import App from "./pages/Login";
-import Register from "./pages/Registration";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import Dashboard from './pages/Dashboard/Dashboard';
+import Company from "./pages/Company/Company";
+import Interview from "./pages/Interview/Interview";
 
 /** GLOBAL CSS */
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,8 +18,11 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/:id" element={<Dashboard />} />
+        <Route path="/company/:id" element={<Company />} />
+        <Route path="/company/:id/:id" element={<Interview />} />
       </Routes>
     </Router>
   </React.StrictMode>
