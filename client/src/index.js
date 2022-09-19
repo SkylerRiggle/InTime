@@ -4,11 +4,11 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 /** PAGE IMPORTS */
-import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
-import Dashboard from './pages/Dashboard/Dashboard';
-import Company from "./pages/Company/Company";
-import Interview from "./pages/Interview/Interview";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Dashboard from './pages/Dashboard';
+import Company from "./pages/Company";
+import Interview from "./pages/Interview";
 
 /** GLOBAL CSS */
 import "bootstrap/dist/css/bootstrap.min.css";
