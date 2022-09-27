@@ -12,10 +12,15 @@ import Interview from "./pages/Interview";
 
 /** GLOBAL CSS */
 import "bootstrap/dist/css/bootstrap.min.css";
+import NavBar from "./components/NavBar";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    {/** NAVIGATION BAR */}
+    <NavBar/>
+
+    {/** PAGE CONTENT */}
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
