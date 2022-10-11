@@ -28,7 +28,10 @@ app.set('port', port);
 
 const db = require('../app/config/db');
 db.sequelize.sync()
-  .then(() => console.log("Database Successfully Synced."))
+  .then(() => {
+    console.log("\u001B[32m" + "Database Successfully Synced.");
+    console.log("\u001B[0m" + "----------------------------------");
+  })
   .catch((error) => console.error("Unable to Sync Database: ", error));
 
 /**

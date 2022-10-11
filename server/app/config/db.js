@@ -30,7 +30,15 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 // Model Recognition.
-//TODO: ADD MODELS HERE!
+db.User = require('../models/User')(sequelize, Sequelize);
+db.Company = require('../models/Company')(sequelize, Sequelize);
+db.Interview = require('../models/Interview')(sequelize, Sequelize);
+db.DataPoint = require('../models/DataPoint')(sequelize, Sequelize);
+
+/**
+ * Handle model foreign keys.
+ */
+//TODO
 
 /**
  * Export the database for the rest of the app to use.
