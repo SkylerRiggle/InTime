@@ -38,7 +38,18 @@ db.DataPoint = require('../models/DataPoint')(sequelize, Sequelize);
 /**
  * Handle model foreign keys.
  */
-//TODO
+
+// COMPANY HASMANY INTERVIEW
+db.Company.hasMany(db.Interview);
+db.Interview.belongsTo(db.Company);
+
+// INTERVIEW HASMANY DATAPOINT
+db.Interview.hasMany(db.DataPoint);
+db.DataPoint.belongsTo(db.Interview);
+
+// USER HASMANY DATAPOINT
+db.User.hasMany(db.DataPoint);
+db.DataPoint.belongsTo(db.User);
 
 /**
  * Export the database for the rest of the app to use.
