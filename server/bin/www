@@ -9,11 +9,30 @@ var debug = require('debug')('server:server');
 var http = require('http');
 
 /**
+ * Configure the custom environment file.
+ */
+
+const dotenv = require('dotenv');
+dotenv.config();
+
+/**
  * Get port from environment and store in Express.
  */
 
 var port = normalizePort(process.env.PORT || '3333');
 app.set('port', port);
+
+/**
+ * Establish a connection with the app's database.
+ */
+
+const db = require('../app/config/db');
+db.sequelize.sync()
+  .then(() => {
+    console.log("\u001B[32m" + "Database Successfully Synced.");
+    console.log("\u001B[0m" + "----------------------------------");
+  })
+  .catch((error) => console.error("Unable to Sync Database: ", error));
 
 /**
  * Create HTTP server.
@@ -67,11 +86,9 @@ function onError(error) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');
       process.exit(1);
-      break;
     case 'EADDRINUSE':
       console.error(bind + ' is already in use');
       process.exit(1);
-      break;
     default:
       throw error;
   }
@@ -87,4 +104,7 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+
+  console.log("\u001B[32m" + "App listening on " + bind);
+  console.log("\u001B[0m" + "----------------------------------");
 }
