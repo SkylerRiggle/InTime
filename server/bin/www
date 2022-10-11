@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../src/app');
+var app = require('../app');
 var debug = require('debug')('server:server');
 var http = require('http');
 
@@ -21,6 +21,15 @@ dotenv.config();
 
 var port = normalizePort(process.env.PORT || '3333');
 app.set('port', port);
+
+/**
+ * Establish a connection with the app's database.
+ */
+
+const db = require('../app/config/db');
+db.sequelize.sync()
+  .then(() => console.log("Database Successfully Synced."))
+  .catch((error) => console.error("Unable to Sync Database: ", error));
 
 /**
  * Create HTTP server.
@@ -74,11 +83,9 @@ function onError(error) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');
       process.exit(1);
-      break;
     case 'EADDRINUSE':
       console.error(bind + ' is already in use');
       process.exit(1);
-      break;
     default:
       throw error;
   }
