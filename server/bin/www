@@ -4,13 +4,15 @@
  * Module dependencies.
  */
 
-var app = require('../src/app');
+var app = require('../app');
+var db = require('../start/db');
 var debug = require('debug')('server:server');
 var http = require('http');
 
 /**
  * Configure the custom environment file.
  */
+
 const dotenv = require('dotenv');
 dotenv.config();
 
