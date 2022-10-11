@@ -1,8 +1,8 @@
 const db = require('../config/db');
 const User = db.User;
 
-exports.get = (req, res) => { }
-exports.getAll = (req, res) => { }
-exports.create = (req, res) => { }
-exports.edit = (req, res) => { }
-exports.delete = (req, res) => { }
+exports.get = async (req, res) => { }
+exports.getAll = async (req, res) => { }
+exports.create = async (req, res) => { }
+exports.edit = async (req, res) => { }
+exports.delete = async (req, res) => { }
