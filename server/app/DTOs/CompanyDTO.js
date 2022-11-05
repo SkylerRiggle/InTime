@@ -1,9 +1,11 @@
 module.exports = class CompanyDTO {
+  id;
   name;
-  colorCode;
+  color;
 
-  constructor(name, colorCode) {
+  constructor(id, name, color) {
+    this.id = id;
     this.name = name;
-    this.colorCode = colorCode;
+    this.color = color;
   }
 };
