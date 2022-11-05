@@ -1,4 +1,4 @@
-module.exports = class DataPoint {
+module.exports = class DataPointDTO {
   userId;
   daysAfterApplication;
   date;

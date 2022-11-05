@@ -1,4 +1,4 @@
-module.exports = class Company {
+module.exports = class CompanyDTO {
   name;
   colorCode;
 
