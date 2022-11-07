@@ -20,6 +20,7 @@ const DataPointController = require('./controllers/DataPointController');
 
 router.get('/api/users/:id', async (req, res) => await UserController.get(req, res));
 router.get('/api/users', async (req, res) => await UserController.getAll(req, res));
+router.post('/api/users/login', async (req, res) => await UserController.login(req, res));
 router.post('/api/users/create', async (req, res) => await UserController.create(req, res));
 router.post('/api/users/edit', async (req, res) => await UserController.edit(req, res));
 router.post('/api/users/delete', async (req, res) => await UserController.delete(req, res));
@@ -57,5 +58,7 @@ router.post('/api/datapoints/delete', async (req, res) => await DataPointControl
 /**
  * Export application routes.
  */
+
+router.use();
 
 module.exports = router;

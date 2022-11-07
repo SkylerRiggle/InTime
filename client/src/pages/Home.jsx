@@ -21,13 +21,13 @@ const Home = () => {
                     InTime User Login
                   </h5>
 
-                  <form>
+                  <form id="login-form">
                     <h5>Enter Account Information</h5>
 
-                    <div class="form-outline mb-4">
+                    <div id="textbox-email" class="mb-2">
                       <input
-                        type="email"
-                        id="form2Example11"
+                        type="text"
+                        id="input-email"
                         class="form-control"
                         placeholder="Phone number or email address"
                       />
