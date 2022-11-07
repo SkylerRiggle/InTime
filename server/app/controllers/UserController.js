@@ -7,13 +7,24 @@ exports.get = async (req, res) => {
 }
 
 /** Get all users from the database */
-exports.getAll = async (req, res) => { }
+exports.getAll = async (req, res) => {
+    const users = await User.findAll();
+    return res.sendStatus(200).send(users);
+}
 
 /** Handle the login sequence for a user */
 exports.login = async (req, res) => { }
 
 /** Create a new user */
-exports.create = async (req, res) => { }
+exports.create = async (req, res) => {
+    const newUser = await User.create({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+    });
+    newUser.save();
+    return res.sendStatus(200).send(newUser);
+}
 
 /** Edit an existing user */
 exports.edit = async (req, res) => { }
