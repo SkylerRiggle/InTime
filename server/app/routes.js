@@ -22,7 +22,7 @@ router.get('/api/users/:id', async (req, res) => await UserController.get(req, r
 router.get('/api/users', async (req, res) => await UserController.getAll(req, res));
 router.post('/api/users/login', async (req, res) => await UserController.login(req, res));
 router.post('/api/users/create', async (req, res) => await UserController.create(req, res));
-router.put('/api/users/edit', async (req, res) => await UserController.edit(req, res));
+router.put('/api/users/:id', async (req, res) => await UserController.edit(req, res));
 router.delete('/api/users/:id', async (req, res) => await UserController.delete(req, res));
 
 /**
@@ -32,7 +32,7 @@ router.delete('/api/users/:id', async (req, res) => await UserController.delete(
 router.get('/api/companies/:id', async (req, res) => await CompanyController.get(req, res));
 router.get('/api/companies', async (req, res) => await CompanyController.getAll(req, res));
 router.post('/api/companies/create', async (req, res) => await CompanyController.create(req, res));
-router.put('/api/companies/edit', async (req, res) => await CompanyController.edit(req, res));
+router.put('/api/companies/:id', async (req, res) => await CompanyController.edit(req, res));
 router.delete('/api/companies/:id', async (req, res) => await CompanyController.delete(req, res));
  
 /**
@@ -42,7 +42,7 @@ router.delete('/api/companies/:id', async (req, res) => await CompanyController.
 router.get('/api/interviews/:id', async (req, res) => await InterviewController.get(req, res));
 router.get('/api/interviews', async (req, res) => await InterviewController.getAll(req, res));
 router.post('/api/interviews/create', async (req, res) => await InterviewController.create(req, res));
-router.put('/api/interviews/edit', async (req, res) => await InterviewController.edit(req, res));
+router.put('/api/interviews/:id', async (req, res) => await InterviewController.edit(req, res));
 router.delete('/api/interviews/:id', async (req, res) => await InterviewController.delete(req, res));
  
 /**
@@ -52,7 +52,7 @@ router.delete('/api/interviews/:id', async (req, res) => await InterviewControll
 router.get('/api/datapoints/:id', async (req, res) => await DataPointController.get(req, res));
 router.get('/api/datapoints', async (req, res) => await DataPointController.getAll(req, res));
 router.post('/api/datapoints/create', async (req, res) => await DataPointController.create(req, res));
-router.put('/api/datapoints/edit', async (req, res) => await DataPointController.edit(req, res));
+router.put('/api/datapoints/:id', async (req, res) => await DataPointController.edit(req, res));
 router.delete('/api/datapoints/:id', async (req, res) => await DataPointController.delete(req, res));
  
 /**

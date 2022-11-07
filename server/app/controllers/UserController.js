@@ -36,7 +36,19 @@ exports.create = async (req, res) => {
 }
 
 /** Edit an existing user */
-exports.edit = async (req, res) => { }
+exports.edit = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const user = await User.update(req.body, {
+            where: {
+                id: id
+            }
+        });
+        return res.status(200).send("User updated");
+    } catch (error) {
+        return res.status(500).send(`Error updating user: ${error}`);
+    }
+}
 
 /** Delete a user from the database */
 exports.delete = async (req, res) => {
@@ -47,9 +59,8 @@ exports.delete = async (req, res) => {
                 id: id
             }
         });
+        return res.status(200).send("User deleted");
     } catch (error) {
         return res.status(500).send(`Error deleting user: ${error}`);
     }
-
-    return res.status(200).send("User successfully deleted");
 }
