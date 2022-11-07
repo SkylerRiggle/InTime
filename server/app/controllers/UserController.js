@@ -9,7 +9,7 @@ exports.get = async (req, res) => {
 /** Get all users from the database */
 exports.getAll = async (req, res) => {
     const users = await User.findAll();
-    return res.sendStatus(200).send(users);
+    return res.status(200).send(users);
 }
 
 /** Handle the login sequence for a user */
@@ -23,7 +23,7 @@ exports.create = async (req, res) => {
         password: req.body.password
     });
     newUser.save();
-    return res.sendStatus(200).send(newUser);
+    return res.status(200).send(newUser);
 }
 
 /** Edit an existing user */
