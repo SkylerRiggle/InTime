@@ -3,7 +3,16 @@ const User = db.User;
 
 /** Get a specific user from the database */
 exports.get = async (req, res) => { 
+    console.log("I MADE IT HERE")
     const id = req.params.id;
+    const user = await User.findAll({
+        where: {
+            id: id
+        }
+    });
+
+    if (!user) return res.status(404).send("User not found");
+    return res.status(200).send(user);
 }
 
 /** Get all users from the database */
