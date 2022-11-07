@@ -12,7 +12,8 @@ exports.get = async (req, res) => {
     const user = await User.findAll({
         where: {
             id: id
-        }
+        },
+        attributes: { exclude: ['password'] }
     });
 
     // User not found case
@@ -26,14 +27,28 @@ exports.get = async (req, res) => {
  * Get all users from the database 
  */
 exports.getAll = async (req, res) => {
-    const users = await User.findAll();
+    const users = await User.findAll({
+        attributes: { exclude: ['password'] }
+    });
     return res.status(200).send(users);
 }
 
 /** 
  * Handle the login sequence for a user 
  */
-exports.login = async (req, res) => { }
+exports.login = async (req, res) => {
+    const email = req.body.email;
+    const username = req.body.username;
+    const password = req.body.password;
+
+    if (email) { // Login with email
+
+    } else if (username) { // Login with username
+
+    }
+
+    return res.status(500).send("Invalid Username/Email");
+}
 
 /** 
  * Create a new user 
