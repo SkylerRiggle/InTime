@@ -2,8 +2,8 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 /**
  * Controller imports.
@@ -58,7 +58,5 @@ router.delete('/api/datapoints/delete', async (req, res) => await DataPointContr
 /**
  * Export application routes.
  */
-
-router.use();
 
 module.exports = router;
