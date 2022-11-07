@@ -3,6 +3,7 @@ module.exports = (sequelize, Sequelize) => {
     name: {
       type: Sequelize.STRING,
       primarykey: true,
+      unique: true,
     },
     color: {
       type: Sequelize.STRING,

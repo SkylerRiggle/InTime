@@ -54,13 +54,17 @@ exports.login = async (req, res) => {
  * Create a new user 
  */
 exports.create = async (req, res) => {
-    const newUser = await User.create({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-    });
-    newUser.save();
-    return res.status(200).send(newUser);
+    try {
+        const newUser = await User.create({
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password
+        });
+        newUser.save();
+        return res.status(200).send("User Created");
+    } catch (error) {
+        return res.status(500).send("Unable To Create User")
+    }
 }
 
 /** 
