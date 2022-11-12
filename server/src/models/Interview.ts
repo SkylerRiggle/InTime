@@ -1,6 +1,9 @@
-import { Model } from "sequelize-typescript";
+import { Model, Table } from "sequelize-typescript";
 
-class Interview extends Model {}
+@Table
+class Interview extends Model {
+    
+}
 
 /**
  * Export model

@@ -1,6 +1,9 @@
-import { Model } from "sequelize-typescript";
+import { Model, Table } from "sequelize-typescript";
 
-class Company extends Model {}
+@Table
+class Company extends Model {
+    
+}
 
 /**
  * Export model
