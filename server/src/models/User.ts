@@ -1,4 +1,5 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
+import Data from "./Data";
 
 @Table
 class User extends Model {
@@ -18,6 +19,9 @@ class User extends Model {
         type: DataType.STRING,
     })
     password!: string;
+
+    @HasMany(() => Data)
+    dataPoints?: Data[];
 }
 
 /**
