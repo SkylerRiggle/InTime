@@ -1,11 +1,21 @@
-import express from "express";
+import { Router } from "express";
+import RouteGroup from 'express-route-grouping';
 
 /**
  * Create the application's router
  */
-const router = express.Router();
+const root = new RouteGroup("/", Router());
 
 /**
- * Export the app router
+ * Route definitions
  */
-export default router;
+root.group("/user", users => {
+    users.get("/", (_req, res) => {
+        return res.status(200).send("HELLO EVERYBODY!!!");
+    });
+})
+
+/**
+ * Router export
+ */
+export default root.export();
