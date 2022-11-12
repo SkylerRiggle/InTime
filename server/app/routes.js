@@ -11,11 +11,6 @@ router.use("/user", userRouter);
 router.use("/interview", interviewRouter);
 router.use("/company", companyRouter);
 
-/* TEMPLATE ROUTE */
-router.get("/", async function (req, res, next) {
-  res.status(200).send({ Example: "data" });
-});
-
 router.use();
 
 module.exports = router;
