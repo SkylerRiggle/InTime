@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import http from 'http';
 import routes from '../src/routes';
+import db from '../src/config/db';
 
 /**
  * Configure environment variables
@@ -31,6 +32,16 @@ app.use("/", routes);
  */
 const port = normalizePort(process.env.PORT || '3333');
 app.set('port', port);
+
+/**
+ * Establish a connection to the app's database
+ */
+db.sync().then(() => {
+    console.log("\u001B[32m" + "Database Successfully Synced.");
+    console.log("\u001B[0m" + "----------------------------------");
+}).catch((error) => {
+    console.error("Unable to sync with database: ", error);
+});
 
 /**
  * Create an HTTP server
