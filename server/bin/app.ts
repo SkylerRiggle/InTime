@@ -5,7 +5,6 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import http from 'http';
 import router from '../src/routes';
-const debug = require('debug')('server:server');
 
 /**
  * Configure environment variables
@@ -97,7 +96,6 @@ function onListening() {
     const bind = typeof addr === 'string'
         ? 'pipe ' + addr
         : 'port ' + addr?.port;
-    debug('Listening on ' + bind);
 
     console.log("\u001B[32m" + "App listening on " + bind);
     console.log("\u001B[0m" + "----------------------------------");
