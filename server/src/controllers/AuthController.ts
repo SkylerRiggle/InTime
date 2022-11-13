@@ -5,18 +5,23 @@ import bcrypt from 'bcrypt';
 module AuthController {
     /** Attempt to log a user into the site */
     export const login = async (req: Request, res: Response) => {
-        const username = req.body.username;
         const email = req.body.email;
+        const username = req.body.username;
 
         var user: User | null;
-        if (email) {
-            user = await User.findOne({ where: { email: email } });
-        } else {
-            user = await User.findOne({ where: { username: username } });
-        }
+        if (email) user = await User.findOne({ where: { email: email } });
+        else if (username) user = await User.findOne({ where: { username: username } });
+        else return res.status(400).send("Please enter a valid username or email.");
 
-        if (!user) return res.status(404).send("Please enter a valid username or email.");
-        return await bcrypt.compare(req.body.password, user.password);
+        if (!user) return res.status(404).send("Unable to find user.");
+
+        const password = req.body.password;
+        if (password) {
+            const result = await bcrypt.compare(password, user.password);
+            console.log(password, user.password);
+            return res.status(200).send(result);
+        }
+        return res.status(400).send("Please enter a valid password.");
     }
 }
 

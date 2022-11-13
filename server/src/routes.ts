@@ -21,15 +21,15 @@ const root = new RouteGroup("/", Router());
 
 /** User Routes */
 root.group("/user", users => {
+    // Auth Routes
+    users.post("/login", async (req, res) => { return await AuthController.login(req, res); });
+    
     // Standard CRUD User Routes
     users.get("/", async (req, res) => { return await UsersController.getAll(req, res); });
     users.get("/:id", async (req, res) => { return await UsersController.get(req, res); });
     users.post("/", async (req, res) => { return await UsersController.create(req, res); });
     users.put("/:id", async (req, res) => { return await UsersController.edit(req, res); });
     users.delete("/:id", async (req, res) => { return await UsersController.remove(req, res); });
-    
-    // Auth Routes
-    users.post("/login", async (req, res) => { return await AuthController.login(req, res); });
 });
 
 /** Company Routes */

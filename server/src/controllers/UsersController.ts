@@ -37,7 +37,7 @@ module UsersController {
         const id = req.params.id;
 
         try {
-            await User.update(req.body, { where: { id: id }, individualHooks: true });
+            await User.update(req.body, { where: { id: id } });
             return res.status(200).send("User successfully updated.")
         } catch (error) {
             return res.status(500).send(`An unexpected error has occured: ${error}`);
@@ -49,7 +49,7 @@ module UsersController {
         const id = req.params.id;
 
         try {
-            await User.destroy({ where: { id: id }, individualHooks: true });
+            await User.destroy({ where: { id: id } });
             return res.status(200).send("User successfully deleted.")
         } catch (error) {
             return res.status(500).send(`An unexpected error has occured: ${error}`);
