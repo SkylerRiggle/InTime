@@ -2,6 +2,9 @@ import { BeforeCreate, BeforeSave, BeforeUpdate, Column, DataType, HasMany, Mode
 import bcrypt from 'bcrypt';
 import Data from "./Data";
 
+/**
+ * Password security
+ */
 const saltRounds = 10;
 const handleHash = (user: User) => {
     user.password = bcrypt.hashSync(user.password, saltRounds);
