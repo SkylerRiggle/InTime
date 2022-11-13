@@ -4,11 +4,7 @@ import User from "../models/User";
 module UsersController {
     /** Get all users from the database */
     export const getAll = async (req: Request, res: Response) => {
-        const users = await User.findAll({
-            attributes: {
-                exclude: ["password"]
-            }
-        });
+        const users = await User.findAll({ attributes: { exclude: ["password"] } });
         return res.status(200).send(users);
     }
 
@@ -41,7 +37,7 @@ module UsersController {
         const id = req.params.id;
 
         try {
-            await User.update(req.body, { where: { id: id } });
+            await User.update(req.body, { where: { id: id }, individualHooks: true });
             return res.status(200).send("User successfully updated.")
         } catch (error) {
             return res.status(500).send(`An unexpected error has occured: ${error}`);
@@ -53,7 +49,7 @@ module UsersController {
         const id = req.params.id;
 
         try {
-            await User.destroy({ where: { id: id } });
+            await User.destroy({ where: { id: id }, individualHooks: true });
             return res.status(200).send("User successfully deleted.")
         } catch (error) {
             return res.status(500).send(`An unexpected error has occured: ${error}`);
