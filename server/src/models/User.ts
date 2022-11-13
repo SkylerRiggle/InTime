@@ -7,7 +7,6 @@ import Data from "./Data";
  */
 const saltRounds = 10;
 const handleHash = (user: User) => {
-    console.log("SALTING")
     user.password = bcrypt.hashSync(user.password, saltRounds);
 }
 

@@ -18,7 +18,6 @@ module AuthController {
         const password = req.body.password;
         if (password) {
             const result = await bcrypt.compare(password, user.password);
-            console.log(password, user.password);
             return res.status(200).send(result);
         }
         return res.status(400).send("Please enter a valid password.");
