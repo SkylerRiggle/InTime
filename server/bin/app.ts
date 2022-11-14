@@ -8,7 +8,7 @@ import routes from '../src/routes';
 import db from '../src/config/db';
 
 /**
- * Configure environment variables
+ * Configure environment constiables
  */
 dotenv.config();
 
@@ -59,7 +59,7 @@ server.on('listening', onListening);
  * Normalize a port into a number, string, or false.
  */
 function normalizePort(val: string) {
-    var port = parseInt(val, 10);
+    const port = parseInt(val, 10);
 
     if (isNaN(port)) {
         // Named pipe
@@ -82,20 +82,20 @@ function onError(error: { syscall: string; code: any; }) {
         throw error;
     }
 
-    var bind = typeof port === 'string'
+    const bind = typeof port === 'string'
         ? 'Pipe ' + port
         : 'Port ' + port;
 
     // Handle specific listen errors with friendly messages
     switch (error.code) {
         case 'EACCES':
-        console.error(bind + ' requires elevated privileges');
-        process.exit(1);
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
         case 'EADDRINUSE':
-        console.error(bind + ' is already in use');
-        process.exit(1);
+            console.error(bind + ' is already in use');
+            process.exit(1);
         default:
-        throw error;
+            throw error;
     }
 }
 
