@@ -11,7 +11,7 @@ import Trend from '../images/trend.png';
 const Home = () => {
   return (
     <>
-      <div className='d-flex justify-content-around align-items-center flex-wrap pt-5'>
+      <div className='d-flex justify-content-around align-items-center flex-wrap'>
         <div className='d-flex flex-column align-items-center' style={{maxWidth:'45%'}}>
           <img src={Logo} alt="InTime-Logo" width="100%" />
           <a href='/login'><button className='btn btn-success fs-1 mt-5 mb-5 ps-5 pe-5'>Get Started</button></a>

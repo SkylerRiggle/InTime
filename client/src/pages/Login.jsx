@@ -12,7 +12,7 @@ import { useState } from "react";
 const LoginCard = ({ children }) => {
   return (
     <div
-    className="d-flex flex-column border border-success rounded container p-3 ps-5 pe-5 mt-5"
+    className="d-flex flex-column border border-success rounded container p-3 ps-5 pe-5 mb-5"
     style={{ maxWidth: '500px' }}> { children } </div>
   );
 }

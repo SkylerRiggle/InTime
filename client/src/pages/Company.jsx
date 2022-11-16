@@ -11,7 +11,7 @@ import Logo from '../images/logo.png';
 const Company = () => {
   return (
     <>
-      <div className='d-flex align-items-end mt-5 mb-5'>
+      <div className='d-flex align-items-end mb-5'>
         <div className='d-flex align-items-center justify-content-center rounded p-1 me-3'
           style={{ width: '100pt', height: '100pt', border:'2pt solid black' }}>
           <img src={Logo} alt="Company-Logo" width="100%" />
