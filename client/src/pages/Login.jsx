@@ -44,7 +44,7 @@ const Login = () => {
         <br />
         
         <small className="fs-6">Don't have an account?</small>
-        <button className="btn btn-outline-danger">Create Account</button>
+        <button className="btn btn-outline-danger mb-3">Create Account</button>
       </div>
     </>
   );
