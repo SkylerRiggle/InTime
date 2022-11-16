@@ -14,6 +14,14 @@ import Interview from "./pages/Interview";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/NavBar";
 
+const PageWrapper = ({ child, gutter }) => {
+  return (<div
+    className="mt-5 pb-5"
+    style={{ marginLeft: gutter, marginRight: gutter, overflowX: 'hidden', maxWidth: '100vw' }}>
+    {child}
+  </div>);
+}
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -23,11 +31,11 @@ root.render(
     {/** PAGE CONTENT */}
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/:id" element={<Dashboard />} />
-        <Route path="/company" element={<Company />} />
-        <Route path="/company/:id/:id" element={<Interview />} />
+        <Route path="/" element={<PageWrapper child={<Home />} />} />
+        <Route path="/login" element={<PageWrapper child={<Login />} gutter='8vw' />} />
+        <Route path="/:id" element={<PageWrapper child={<Dashboard />} gutter='8vw' />} />
+        <Route path="/company/:id" element={<PageWrapper child={<Company />} gutter='8vw' />} />
+        <Route path="/company/:id/:id" element={<PageWrapper child={<Interview />} gutter='8vw' />} />
       </Routes>
     </Router>
   </React.StrictMode>
