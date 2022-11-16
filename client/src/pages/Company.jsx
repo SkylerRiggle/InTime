@@ -8,6 +8,12 @@
 
 import Logo from '../images/logo.png';
 
+const InterviewCard = () => {
+  return (
+    <h1>I AM AN EXAMPLE</h1>
+  );
+}
+
 const Company = () => {
   return (
     <>
@@ -24,18 +30,18 @@ const Company = () => {
       <h4>Internships:</h4>
       <div className='d-flex flex-column align-items-center w-100 border rounded'
         style={{overflowY:'scroll', maxHeight:'50vh'}}>
-        <h1>IM AN EXAMPLE</h1>
-        <h1>IM AN EXAMPLE</h1>
-        <h1>IM AN EXAMPLE</h1>
-        <h1>IM AN EXAMPLE</h1>
-        <h1>IM AN EXAMPLE</h1>
-        <h1>IM AN EXAMPLE</h1>
-        <h1>IM AN EXAMPLE</h1>
-        <h1>IM AN EXAMPLE</h1>
-        <h1>IM AN EXAMPLE</h1>
-        <h1>IM AN EXAMPLE</h1>
-        <h1>IM AN EXAMPLE</h1>
-        <h1>IM AN EXAMPLE</h1>
+        <InterviewCard />
+        <InterviewCard />
+        <InterviewCard />
+        <InterviewCard />
+        <InterviewCard />
+        <InterviewCard />
+        <InterviewCard />
+        <InterviewCard />
+        <InterviewCard />
+        <InterviewCard />
+        <InterviewCard />
+        <InterviewCard />
       </div>
     </>
   );
