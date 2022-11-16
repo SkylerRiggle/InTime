@@ -10,7 +10,9 @@ import Logo from '../images/logo.png';
 
 const InterviewCard = () => {
   return (
-    <h1>I AM AN EXAMPLE</h1>
+    <div className='border border-success rounded p-2 m-2'>
+      <h1>I AM AN EXAMPLE</h1>
+    </div>
   );
 }
 
@@ -29,7 +31,7 @@ const Company = () => {
 
       <h4>Internships:</h4>
       <div className='d-flex flex-column align-items-center w-100 border rounded'
-        style={{overflowY:'scroll', maxHeight:'50vh'}}>
+        style={{overflowY:'scroll', overflowX:'hidden', maxHeight:'50vh'}}>
         <InterviewCard />
         <InterviewCard />
         <InterviewCard />
