@@ -9,8 +9,11 @@
 const Company = () => {
   return (
     <>
-      <span class="badge bg-danger">Danger</span>
-      <span class="badge bg-warning">Warning</span>
+      <div>
+
+      </div>
+
+      <hr/>
     </>
   );
 };
