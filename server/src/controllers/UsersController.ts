@@ -1,7 +1,11 @@
 import { Request, Response } from "express";
 import User from "../models/User";
+import bcrypt from 'bcrypt';
 
 module UsersController {
+    // Constant User Variables
+    const saltRounds = 10;
+
     /** Get all users from the database */
     export const getAll = async (req: Request, res: Response) => {
         const users = await User.findAll({ attributes: { exclude: ["password"] } });
@@ -23,9 +27,9 @@ module UsersController {
             const newUser = await User.create({
                 username: req.body.username,
                 email: req.body.email,
-                password: req.body.password
+                password: bcrypt.hashSync(req.body.password, saltRounds)
             });
-            newUser.save();
+            await newUser.save();
             return res.status(200).send("User successfully created.");
         } catch (error) {
             return res.status(500).send(`An unexpected error has occured: ${error}`);
@@ -37,8 +41,14 @@ module UsersController {
         const id = req.params.id;
 
         try {
-            await User.update(req.body, { where: { id: id } });
-            return res.status(200).send("User successfully updated.")
+            const user = await User.findOne({ where: { id: id } });
+            if (!user) return res.status(404).send("User not found.");
+
+            if (req.body.password) req.body.password = bcrypt.hashSync(req.body.password, saltRounds);
+            await user.update(req.body);
+            await user.save();
+
+            return res.status(200).send("User successfully updated.");
         } catch (error) {
             return res.status(500).send(`An unexpected error has occured: ${error}`);
         }
@@ -49,8 +59,11 @@ module UsersController {
         const id = req.params.id;
 
         try {
-            await User.destroy({ where: { id: id } });
-            return res.status(200).send("User successfully deleted.")
+            const user = await User.findOne({ where: { id: id } });
+            if (!user) return res.status(404).send("User not found.");
+
+            await user.destroy();
+            return res.status(200).send("User successfully deleted.");
         } catch (error) {
             return res.status(500).send(`An unexpected error has occured: ${error}`);
         }
