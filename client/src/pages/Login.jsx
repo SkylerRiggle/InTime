@@ -8,6 +8,8 @@
  */
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Req from "../utils/Req";
 
 const LoginCard = ({ children }) => {
   return (
@@ -18,6 +20,8 @@ const LoginCard = ({ children }) => {
 }
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,31 +30,35 @@ const Login = () => {
   const [newPass, setNewPass] = useState("");
   const [newPass2, setNewPass2] = useState("");
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     // Empty field check
-    if (!username) alert("Please Input a Username or Email");
-    if (!password) alert("Please Input a Password");
+    if (!username) return alert("Please Input a Username or Email");
+    if (!password) return alert("Please Input a Password");
+
+    const response = await Req.login(username, password);
+    if (response === true) navigate(`/dashboard/${Req.currentUser?.id}`)
   }
 
   const handleNew = () => {
     // Empty field check
-    if (!newEmail) alert("Please Enter a Valid Email");
-    if (!newUsername) alert("Please Enter a Valid Username");
-    if (!newPass) alert("Please Enter a Valid Password");
-    if (!newPass2) alert("Please Re-Type Your Password");
+    if (!newEmail) return alert("Please Enter a Valid Email");
+    if (!newUsername) return alert("Please Enter a Valid Username");
+    if (!newPass) return alert("Please Enter a Valid Password");
+    if (!newPass2) return alert("Please Re-Type Your Password");
 
     // Password re-entry check
     if (newPass !== newPass2) {
       alert("Passwords Do Not Match. Please Try Again!");
       setNewPass("");
       setNewPass2("");
+      return;
     }
   }
 
   return (
     <div className="d-flex flex-wrap">
       <LoginCard>
-        <h5 class="pb-1 display-4">
+        <h5 className="pb-1 display-4">
           Welcome Back!
         </h5>
 
@@ -66,12 +74,11 @@ const Login = () => {
         <input type="password" className="form-control" placeholder="𝘗𝘢𝘴𝘴𝘸𝘰𝘳𝘥..." onChange={(e) => setPassword(e.target.value)}/>
         <br/>
 
-        <button className="btn text-white" onClick={() => handleLogin()} style={{backgroundColor:"#FF4700"}}>Log In</button>
-        <a href="/" className="text-muted mb-3">Forgot Password?</a>
+        <button className="btn text-white" onClick={async () => await handleLogin()} style={{backgroundColor:"#FF4700"}}>Log In</button>
       </LoginCard>
 
       <LoginCard>
-        <h5 class="pb-1 display-4">
+        <h5 className="pb-1 display-4">
           New Here?
         </h5>
 
