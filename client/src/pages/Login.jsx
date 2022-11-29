@@ -36,7 +36,7 @@ const Login = () => {
     if (!password) return alert("Please Input a Password");
 
     const response = await Req.login(username, password);
-    if (response === true) navigate(`/dashboard/${Req.currentUser?.id}`)
+    if (response === true) navigate(`/${Req.userId}`)
   }
 
   const handleNew = () => {
