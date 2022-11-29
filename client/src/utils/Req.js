@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const apiBase = "http://127.0.0.1:3333"
 const Req = {};
-Req.userId = -1;
 
 /** Server get requests */
 Req.get = async (url) => {
@@ -34,7 +33,7 @@ Req.login = async (username, password) => {
     );
 
     if (response.data?.result === true) {
-        Req.userId = response.data.user.id
+        localStorage.setItem('user', response.data.user.id);
         return true;
     } else {
         return false;

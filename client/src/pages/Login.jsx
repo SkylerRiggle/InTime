@@ -7,6 +7,7 @@
  * appropriate user dashboard.
  */
 
+import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Req from "../utils/Req";
@@ -22,6 +23,11 @@ const LoginCard = ({ children }) => {
 const Login = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) navigate(`/${user}`);
+  });
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -36,7 +42,7 @@ const Login = () => {
     if (!password) return alert("Please Input a Password");
 
     const response = await Req.login(username, password);
-    if (response === true) navigate(`/${Req.userId}`)
+    if (response === true) navigate(`/${localStorage.getItem('user')}`)
   }
 
   const handleNew = () => {
