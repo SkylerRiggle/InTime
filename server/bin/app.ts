@@ -6,6 +6,7 @@ import logger from "morgan";
 import http from 'http';
 import routes from '../src/routes';
 import db from '../src/config/db';
+import cors from 'cors';
 
 /**
  * Configure environment constiables
@@ -16,6 +17,13 @@ dotenv.config();
  * Create a new express application
  */
 const app = express();
+
+/**
+ * Enable CORS
+ */
+app.use(cors({
+     origin: '*'
+}));
 
 /**
  * Configure express app
