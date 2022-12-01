@@ -5,7 +5,10 @@
  * available interview reviews for a company,
  * as well as any other introductory data for the organization.
  */
-
+import { useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Req from "../utils/Req";
 import Logo from '../images/logo.png';
 
 const InterviewCard = () => {
@@ -17,15 +20,28 @@ const InterviewCard = () => {
 }
 
 const Company = () => {
+  const { id } = useParams();
+  const [company, setCompany] = useState();
+
+  useEffect(() => {
+    const loadCompany = async () => {
+      const companyData = await Req.get(`/company/${id}`);
+      setCompany(companyData);
+      console.log(companyData)
+    }
+
+    loadCompany();
+  }, [id])
+
   return (
     <>
       <div className='d-flex align-items-end mb-5'>
         <div className='d-flex align-items-center justify-content-center rounded p-1 me-3'
-          style={{ width: '100pt', height: '100pt', border:'2pt solid black' }}>
+          style={{ width: '100pt', height: '100pt', border:`2pt solid #${company?.color.toString(16)}` }}>
           <img src={Logo} alt="Company-Logo" width="100%" />
         </div>
         <div className='w-75'>
-          <h2>COMPANY NAME</h2><hr/>
+          <h2>{company?.name}</h2><hr/>
         </div>
       </div>
 
