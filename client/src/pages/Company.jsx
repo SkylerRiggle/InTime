@@ -5,16 +5,21 @@
  * available interview reviews for a company,
  * as well as any other introductory data for the organization.
  */
-import { useState } from "react";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import Req from "../utils/Req";
 import Logo from '../images/logo.png';
 
-const InterviewCard = ({ eventName }) => {
+const InterviewCard = ({ cId, id, eventName, entries, creation, updated }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className='border border-success rounded p-2 m-2'>
-      <h1>{eventName}</h1>
+    <div className="border border-success rounded p-2 m-2 outlineSwapGreen"
+      style={{ width: '300px' }} onClick={() => navigate(`/company/${cId}/${id}`)} >
+      <h3>{eventName}</h3>
+      <div>Number Of Entries: {entries}</div>
+      <div>Last Updated At: {new Date(updated).toDateString()}</div>
+      <div>Created At: {new Date(creation).toDateString()}</div>
     </div>
   );
 }
@@ -45,10 +50,13 @@ const Company = () => {
       </div>
 
       <h4>Internships:</h4>
-      <div className='d-flex flex-column align-items-center w-100 border rounded'
+      <div className='d-flex flex-wrap w-100 border rounded'
         style={{ overflowY: 'scroll', overflowX: 'hidden', maxHeight: '50vh' }}>
-        {company && company.interviews ? company.interviews.map((interview) => {
-          return (<InterviewCard eventName={interview.eventName} />)
+        {company && company.interviews ? company.interviews.map((interview, i) => {
+          return (
+            <InterviewCard id={interview.id} eventName={interview.eventName} entries={interview.rollingSum}
+            creation={interview.createdAt} updated={interview.updatedAt} key={`Interview_${i}`} cId={id} />
+          )
         }) : <span className="my-4">No Interviews Available...</span>}
       </div>
     </>
