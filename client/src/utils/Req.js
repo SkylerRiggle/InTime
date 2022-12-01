@@ -9,8 +9,9 @@ Req.get = async (url) => {
 }
 
 /** Server post requests */
-Req.post = async (url) => {
-    return "HELLO WORLD"
+Req.post = async (url, data) => {
+    const response = await axios.post(apiBase + url, data);
+    return response.data;
 }
 
 /** Server put requests */

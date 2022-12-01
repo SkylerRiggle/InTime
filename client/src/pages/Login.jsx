@@ -45,7 +45,7 @@ const Login = () => {
     if (response === true) navigate(`/${localStorage.getItem('user')}`)
   }
 
-  const handleNew = () => {
+  const handleNew = async () => {
     // Empty field check
     if (!newEmail) return alert("Please Enter a Valid Email");
     if (!newUsername) return alert("Please Enter a Valid Username");
@@ -58,6 +58,18 @@ const Login = () => {
       setNewPass("");
       setNewPass2("");
       return;
+    }
+
+    const response = await Req.post('/user/', {
+      username: newUsername,
+      email: newEmail,
+      password: newPass
+    });
+    if (response) {
+      localStorage.setItem('user', response.id)
+      navigate(`/${localStorage.getItem('user')}`)
+    } else {
+
     }
   }
 
@@ -104,7 +116,7 @@ const Login = () => {
         <input type="password" className="form-control" placeholder="𝘗𝘢𝘴𝘴𝘸𝘰𝘳𝘥..." onChange={(e) => setNewPass2(e.target.value)}/>
         <br/>
 
-        <button className="btn btn-success" onClick={() => handleNew()}>Create Account</button>
+        <button className="btn btn-success" onClick={async () => await handleNew()}>Create Account</button>
       </LoginCard>
     </div>
   );
