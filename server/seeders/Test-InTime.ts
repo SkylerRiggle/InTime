@@ -8,6 +8,7 @@ import Data from "../src/models/Data";
 
 /** Upstream Seed */
 export const up = async () => {
+  //#region USER CREATION
   const users = await User.bulkCreate([{
     username: "Test",
     email: "123@email.com",
@@ -16,8 +17,10 @@ export const up = async () => {
     username: "Test2",
     email: "abc@email.com",
     password: bcrypt.hashSync("abc", 10)
-    }]);
-  
+  }]);
+  //#endregion
+
+  //#region COMPANY CREATION
   const companies = await Company.bulkCreate([{
     name: "Amazoon",
     color: 16750848
@@ -25,7 +28,9 @@ export const up = async () => {
     name: "FazeBuk",
     color: 4351922
   }]);
+  //#endregion
 
+  //#region INTERVIEW CREATION
   const interviews = await Interview.bulkCreate([{
     eventName: "Software Engineering Internship",
     rollingSum: 5,
@@ -39,7 +44,9 @@ export const up = async () => {
     rollingSum: 5,
     companyId: companies[1].id
   }]);
+  //#endregion
 
+  //#region DATA CREATION
   await Data.bulkCreate([{
     date: new Date(2010, 5, 12),
     daysSinceApplication: 5,
@@ -135,6 +142,7 @@ export const up = async () => {
     eventId: interviews[2].id,
     userId: users[1].id
   }]);
+  //#endregion
 }
 
 /** Downstream Seed */

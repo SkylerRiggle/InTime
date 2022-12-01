@@ -11,10 +11,10 @@ import { useParams } from "react-router-dom";
 import Req from "../utils/Req";
 import Logo from '../images/logo.png';
 
-const InterviewCard = () => {
+const InterviewCard = ({ eventName }) => {
   return (
     <div className='border border-success rounded p-2 m-2'>
-      <h1>I AM AN EXAMPLE</h1>
+      <h1>{eventName}</h1>
     </div>
   );
 }
@@ -26,7 +26,7 @@ const Company = () => {
   useEffect(() => {
     const loadCompany = async () => {
       const companyData = await Req.get(`/company/${id}`);
-      setCompany(companyData);
+      if (companyData) setCompany(companyData);
     }
 
     loadCompany();
@@ -46,19 +46,10 @@ const Company = () => {
 
       <h4>Internships:</h4>
       <div className='d-flex flex-column align-items-center w-100 border rounded'
-        style={{overflowY:'scroll', overflowX:'hidden', maxHeight:'50vh'}}>
-        <InterviewCard />
-        <InterviewCard />
-        <InterviewCard />
-        <InterviewCard />
-        <InterviewCard />
-        <InterviewCard />
-        <InterviewCard />
-        <InterviewCard />
-        <InterviewCard />
-        <InterviewCard />
-        <InterviewCard />
-        <InterviewCard />
+        style={{ overflowY: 'scroll', overflowX: 'hidden', maxHeight: '50vh' }}>
+        {company && company.interviews ? company.interviews.map((interview) => {
+          return (<InterviewCard eventName={interview.eventName} />)
+        }) : <span className="my-4">No Interviews Available...</span>}
       </div>
     </>
   );

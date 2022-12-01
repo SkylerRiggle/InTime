@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Company from "../models/Company";
+import Interview from "../models/Interview";
 
 module CompaniesController {
     /** Get all companies from the database */
@@ -12,7 +13,7 @@ module CompaniesController {
     export const get = async (req: Request, res: Response) => {
         const id = req.params.id;
 
-        const company = await Company.findOne({ where: { id: id } });
+        const company = await Company.findOne({ where: { id: id }, include: [{model: Interview}] });
         if (!company) return res.status(404).send("Company not found.");
         return res.status(200).send(company);
     }
