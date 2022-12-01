@@ -1,11 +1,9 @@
-import { QueryInterface } from 'sequelize';
-
 /** Upstream Seed */
-export const up = async (queryInterface: QueryInterface) => {
-
+export const up = async () => {
+  console.log("SEEDING")
 }
 
 /** Downstream Seed */
-export const down = async (queryInterface: QueryInterface) => {
-
+export const down = async () => {
+  console.log("UNSEEDING")
 }
