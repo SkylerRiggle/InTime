@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
 
 /** PAGE IMPORTS */
 import Home from "./pages/Home";
@@ -12,7 +13,7 @@ import Interview from "./pages/Interview";
 
 /** GLOBAL CSS */
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavBar from "./components/NavBar";
+import "./styles/global.css";
 
 const PageWrapper = ({ child, gutter }) => {
   return (<div

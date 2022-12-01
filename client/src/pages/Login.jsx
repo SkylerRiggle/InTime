@@ -7,8 +7,7 @@
  * appropriate user dashboard.
  */
 
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Req from "../utils/Req";
 

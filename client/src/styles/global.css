@@ -1,0 +1,11 @@
+.outlineSwapGreen {
+    background-color: inherit;
+    color: inherit;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.outlineSwapGreen:hover {
+    background-color: green;
+    color: white;
+}
