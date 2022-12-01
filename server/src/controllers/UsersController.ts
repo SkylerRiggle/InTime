@@ -30,7 +30,10 @@ module UsersController {
                 password: bcrypt.hashSync(req.body.password, saltRounds)
             });
             await newUser.save();
-            return res.status(200).send("User successfully created.");
+
+            const data = newUser.toJSON();
+            delete data.password;
+            return res.status(200).send(data);
         } catch (error) {
             return res.status(500).send(`An unexpected error has occured: ${error}`);
         }
@@ -48,7 +51,9 @@ module UsersController {
             await user.update(req.body);
             await user.save();
 
-            return res.status(200).send("User successfully updated.");
+            const data = user.toJSON();
+            delete data.password;
+            return res.status(200).send(data);
         } catch (error) {
             return res.status(500).send(`An unexpected error has occured: ${error}`);
         }
@@ -63,7 +68,9 @@ module UsersController {
             if (!user) return res.status(404).send("User not found.");
 
             await user.destroy();
-            return res.status(200).send("User successfully deleted.");
+            const data = user.toJSON();
+            delete data.password;
+            return res.status(200).send(data);
         } catch (error) {
             return res.status(500).send(`An unexpected error has occured: ${error}`);
         }
