@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import db from '../src/config/db';
-import { up, down } from '../seeders/20221201175859-InTime';
+import { up } from '../seeders/Test-InTime';
 
 /**
  * Configure environment constiables
