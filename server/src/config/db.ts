@@ -1,4 +1,3 @@
-import dbConfig from "./dbConfig";
 import { Sequelize } from "sequelize-typescript";
 
 /**
