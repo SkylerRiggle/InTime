@@ -1,7 +1,7 @@
 const dbConfig = {
     name: process.env.DB ? process.env.DB : "intime",
     user: process.env.USER ? process.env.USER : "postgres",
-    pass: process.env.PASSWORD ? process.env.PASSWORD : "riggle2021",
+    pass: process.env.PASSWORD ? process.env.PASSWORD : "123",
     host: process.env.HOST ? process.env.HOST : "localhost",
     pool: {
         max: 5,
