@@ -12,14 +12,24 @@ import Data from "../models/Data";
 /**
  * Create the database instance
  */
-const db = new Sequelize({
-    dialect: 'postgres',
-    database: dbConfig.name,
-    host: dbConfig.host,
-    username: dbConfig.user,
-    password: dbConfig.pass,
-    pool: dbConfig.pool,
+// 
+const db = new Sequelize('InTimeDB', 'carb0006', 'InTime77', {
+  host: 'carb0006-sql-server.database.windows.net',
+  dialect: 'mssql',
+  dialectOptions: {
+      encrypt: true
+    }
+  // port: 1433
 });
+
+db
+        .authenticate()
+        .then(() => {
+            console.log('Connection has been established successfully.');
+        })
+        .catch((err) => {
+            console.log('Unable to connect to the database:', err);
+        });
 
 /**
  * Append model definitions to database

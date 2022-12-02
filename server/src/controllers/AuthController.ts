@@ -17,13 +17,22 @@ module AuthController {
 
         const password = req.body.password;
         if (password) {
-            const result = await bcrypt.compare(password, user.password);
+            console.log(`pass from db: ${user.password} datatype: ${typeof user.password}`);
+            console.log(`pass from user: ${password} datatype: ${typeof password}`);
+            
+            console.log(password == user.password);
+             
+            //bcrypt hashses the first password here & compares the encrypted value to the pass from the db
+            const result = await bcrypt.compareSync(password, user.password);
+            console.log(result);
             if (result) return res.status(200).send({
                 user: user,
                 result: result
             });
+        
             return res.status(200).send({
-                result: result
+                result: result,
+                message: "invalid password"
             });
         }
         return res.status(400).send("Please enter a valid password.");
