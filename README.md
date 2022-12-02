@@ -34,5 +34,5 @@ Then ta-da! You should have a running and linked client-server-database applicat
 
 ### Example User Account
 To login to the application, you can either create a new account, or use the example account added to the database through the seeder. Here's the account's credentials (but don't tell anyone ;) ):
-- USERNAME: kate2
+- USERNAME: Kate2
 - PASSWORD: password

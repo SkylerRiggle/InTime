@@ -19,20 +19,27 @@ const Node = ({ x, y }) => {
    )
 }
 
+const Guides = ({ maxX, maxY }) => {
+   
+}
+
 const FrequencyChart = ({ title, data }) => {
+   const [maxX, setX] = useState(-1);
+   const [maxY, setY] = useState(-1);
    const [dataNodes, setNodes] = useState([]);
 
    useEffect(() => {
       if (data) {
          const maxX = data.maxValue;
+         setX(maxX);
          const maxY = data.maxFrequency;
+         setY(maxY);
          const set = data.getData;
 
          const render = [];
          for (const key in set) {
             const xp = 90 * (set[key] / maxX);
             const yp = 90 * (Number(key) / maxY);
-            console.log(xp, yp)
             render.push(
                <Node x={xp} y={yp} key={key} />
             )
@@ -44,10 +51,13 @@ const FrequencyChart = ({ title, data }) => {
    return (
       <>
          <h4>{title}</h4>
-         <div className="w-100 bg-light position-relative"
-         style={{ height: '400px', border:'5px solid black' }}>
-            <Grid />
-            {dataNodes}
+         <div className="w-100 ps-5 pb-5 mb-1" style={{height:'400px'}}>
+            <div className="w-100 h-100 bg-light position-relative"
+            style={{ border:'2px solid black' }}>
+               <Grid />
+               {dataNodes}
+               <Guides maxX={maxX} maxY={maxY} />
+            </div>
          </div>
       </>
    );
