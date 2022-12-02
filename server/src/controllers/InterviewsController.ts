@@ -1,4 +1,6 @@
 import { Request, Response } from "express";
+import Company from "../models/Company";
+import Data from "../models/Data";
 import Interview from "../models/Interview";
 
 module InterviewsController {
@@ -12,9 +14,13 @@ module InterviewsController {
     export const get = async (req: Request, res: Response) => {
         const id = req.params.id;
 
-        const interview = await Interview.findOne({ where: { id: id } });
+        const interview = await Interview.findOne({ where: { id: id }, include: [{model: Data}] });
         if (!interview) return res.status(404).send("Interview not found.");
-        return res.status(200).send(interview);
+        const data = interview.toJSON();
+
+        const company = await Company.findOne({ where: { id: interview.companyId } });
+        if (company) data.companyName = company.name
+        return res.status(200).send(data);
     }
 
     /** Create a new interview */

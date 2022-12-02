@@ -35,7 +35,7 @@ root.render(
         <Route path="/login" element={<PageWrapper child={<Login />} gutter='8vw' />} />
         <Route path="/:id" element={<PageWrapper child={<Dashboard />} gutter='8vw' />} />
         <Route path="/company/:id" element={<PageWrapper child={<Company />} gutter='8vw' />} />
-        <Route path="/company/:id/:id" element={<PageWrapper child={<Interview />} gutter='8vw' />} />
+        <Route path="/company/:id/:Iid" element={<PageWrapper child={<Interview />} gutter='8vw' />} />
       </Routes>
     </Router>
   </React.StrictMode>
