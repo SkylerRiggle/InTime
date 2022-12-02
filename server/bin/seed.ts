@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-import db from '../src/config/db';
 import { up, down } from '../seeders/Test-InTime';
 
 /**
@@ -10,6 +9,7 @@ dotenv.config();
 /**
  * Establish a connection to the app's database
  */
+ import db from '../src/config/db';
 db.sync().then(() => {
     console.log("\u001B[32m" + "Database Successfully Synced.");
     console.log("\u001B[0m" + "----------------------------------");
