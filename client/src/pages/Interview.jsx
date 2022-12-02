@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import Req from "../utils/Req";
 
 const Interview = () => {
-  const { Iid } = useParams();
+  const { Iid, id } = useParams();
   const [interview, setInterview] = useState();
   const [avg, setAvg] = useState(0);
   const [entries, setEntries] = useState(0);
@@ -38,7 +38,7 @@ const Interview = () => {
   return (
     <>
       <h1>{interview ? interview.eventName : "Error"}</h1>
-      <h3>{interview ? interview.companyName : "Error"}</h3>
+      <a href={`/company/${id}`}><h3>{interview ? interview.companyName : "Error"}</h3></a>
       
       <div>Data Entries: {entries}</div>
       <div>Average Days Since Application: {avg}</div>
