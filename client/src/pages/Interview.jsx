@@ -5,8 +5,7 @@
  * and other data related to this specified position.
  */
 
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Req from "../utils/Req";
 
@@ -40,7 +39,7 @@ const Interview = () => {
     <>
       <h1>{interview ? interview.eventName : "Error"}</h1>
       <h3>{interview ? interview.companyName : "Error"}</h3>
-
+      
       <div>Data Entries: {entries}</div>
       <div>Average Days Since Application: {avg}</div>
     </>

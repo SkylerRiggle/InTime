@@ -5,13 +5,21 @@
  * for reviews and companys, as well as manage their accounts.
  */
 
- const Dashboard = () => 
- {
-   return (
-     <>
-        Dashboard Page
-     </>
-   );
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+ const Dashboard = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (!user) navigate(`/login`);
+  })
+
+  return (
+    <>
+      Dashboard Page
+    </>
+  );
  };
  
  export default Dashboard;
