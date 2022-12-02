@@ -9,7 +9,8 @@
  {
    return (
      <>
-        Interview Page
+       <h1>INTERVIEW TITLE</h1>
+       <h3>COMPANY TITLE</h3>
      </>
    );
  };
