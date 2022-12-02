@@ -15,7 +15,7 @@ class Data extends Model {
     daysSinceApplication!: number;
 
     @Column({
-        type: DataType.JSONB
+        type: DataType.STRING
     })
     responseData?: JSON;
 

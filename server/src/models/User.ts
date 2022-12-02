@@ -4,6 +4,13 @@ import Data from "./Data";
 @Table
 class User extends Model {
     @Column({
+        type: DataType.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    })
+    id!: number;
+
+    @Column({
         type: DataType.STRING,
         unique: true
     })
