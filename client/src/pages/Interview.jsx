@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Req from "../utils/Req";
 import FrequencyMap from "../utils/FrequencyMap";
+import Chart from "../components/Chart";
 
 const Interview = () => {
   const [data, setData] = useState(new FrequencyMap());
@@ -44,6 +45,9 @@ const Interview = () => {
     <>
       <h1>{interview ? interview.eventName : "Error"}</h1>
       <a href={`/company/${id}`}><h3>{interview ? interview.companyName : "Error"}</h3></a>
+      <hr/>
+      
+      <Chart title={"Application Response Frequency"} data={data} />
       
       <div>Data Entries: {entries}</div>
       <div>Average Days Since Application: {avg}</div>
