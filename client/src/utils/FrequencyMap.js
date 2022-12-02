@@ -20,6 +20,26 @@ class FrequencyMap {
         this.data[value.toString()] -= 1
         }
     }
+
+    get maxFrequency() {
+        let max = 0;
+        for (const value in this.data) {
+            if (Number(value) > max) {
+                max = Number(value)
+            }
+        }
+        return max;
+    }
+
+    get maxValue() {
+        let max = 0;
+        for (const value in this.data) {
+            if (this.data[value] > max) {
+                max = this.data[value]
+            }
+        }
+        return max;
+    }
 }
 
-module.exports = FrequencyMap;
+export default FrequencyMap;
