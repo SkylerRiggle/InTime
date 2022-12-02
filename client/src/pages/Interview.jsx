@@ -8,30 +8,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Req from "../utils/Req";
-
-class FrequencyMap {
-  constructor() {
-    this.data = {};
-  }
-
-  get getData() {
-    return this.data;
-  }
-
-  addData(value) {
-    if (this.data[value.toString()]) {
-      this.data[value.toString()] += 1
-    } else {
-      this.data[value.toString()] = 1
-    }
-  }
-
-  removeData(value) {
-    if (this.data[value.toString()]) {
-      this.data[value.toString()] -= 1
-    }
-  }
-}
+import FrequencyMap from "../utils/FrequencyMap";
 
 const Interview = () => {
   const [data, setData] = useState(new FrequencyMap());
