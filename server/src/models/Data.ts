@@ -14,11 +14,6 @@ class Data extends Model {
     })
     daysSinceApplication!: number;
 
-    @Column({
-        type: DataType.STRING
-    })
-    responseData?: JSON;
-
     @ForeignKey(() => Interview)
     @Column({
         type: DataType.INTEGER
