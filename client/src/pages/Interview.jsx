@@ -17,7 +17,7 @@ const Interview = () => {
   useEffect(() => {
     const load = async () => {
       const interviewData = await Req.get(`/interview/${Iid}`);
-      setInterview(interviewData);
+      if (interviewData) setInterview(interviewData);
     }
 
     load();
