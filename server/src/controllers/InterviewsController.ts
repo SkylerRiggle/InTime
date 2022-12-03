@@ -1,9 +1,33 @@
 import { Request, Response } from "express";
+import { Model, Sequelize } from "sequelize-typescript";
 import Company from "../models/Company";
 import Data from "../models/Data";
 import Interview from "../models/Interview";
 
 module InterviewsController {
+
+    export const getAverageTime = async(req: Request, res: Response) => {
+        const interviewId = req.params.companyId;
+        console.log(interviewId);
+        
+        const averageTime = await Interview.findOne({
+            where: {eventId: interviewId},
+            include: [
+                {
+                  model: Data,
+                  as: 'data',
+                  attributes: [],
+                },
+            ],
+            attributes: [
+                [Sequelize.fn('AVG', Sequelize.col('data.daysSinceApplication')),'avg']
+            ],
+            
+            group:['interviewId']
+
+        });
+        res.send(averageTime);
+    }
     /** Get all interviews from the database */
     export const getAll = async (req: Request, res: Response) => {
         const interviews = await Interview.findAll();

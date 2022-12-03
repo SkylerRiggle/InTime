@@ -23,7 +23,6 @@ module DataPointsController {
             const datapoint = await Data.create({
                 date: req.body.date,
                 daysSinceApplication: req.body.daysSinceApplication,
-                responseData: req.body.responseData,
                 eventId: req.body.eventId,
                 userId: req.body.userId
             });
