@@ -19,9 +19,10 @@ module DataPointsController {
 
     /** Create a new datapoint */
     export const create = async (req: Request, res: Response) => {
+        const date = req.body.date; //8/17/22 - days passed since application = find application date
         try {
             const datapoint = await Data.create({
-                date: req.body.date,
+                date: req.body.date,    //07/14/20
                 daysSinceApplication: req.body.daysSinceApplication,
                 eventId: req.body.eventId,
                 userId: req.body.userId

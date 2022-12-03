@@ -6,28 +6,28 @@ import Interview from "../models/Interview";
 
 module InterviewsController {
 
-    export const getAverageTime = async(req: Request, res: Response) => {
-        const interviewId = req.params.companyId;
-        console.log(interviewId);
+    // export const getAverageTime = async(req: Request, res: Response) => {
+    //     const interviewId = req.params.companyId;
+    //     console.log(interviewId);
         
-        const averageTime = await Interview.findOne({
-            where: {eventId: interviewId},
-            include: [
-                {
-                  model: Data,
-                  as: 'data',
-                  attributes: [],
-                },
-            ],
-            attributes: [
-                [Sequelize.fn('AVG', Sequelize.col('data.daysSinceApplication')),'avg']
-            ],
+    //     const averageTime = await Interview.findOne({
+    //         where: {id: interviewId},
+    //         include: [
+    //             {
+    //               model: Data.daysSinceApplication,
+    //               as: 'data',
+    //               attributes: [],
+    //             },
+    //         ],
+    //         attributes: [
+    //             [Sequelize.fn('AVG', Sequelize.col('data.daysSinceApplication')),'avg']
+    //         ],
             
-            group:['interviewId']
+    //         group:['interviewId']
 
-        });
-        res.send(averageTime);
-    }
+    //     });
+    //     res.send(averageTime);
+    // }
     /** Get all interviews from the database */
     export const getAll = async (req: Request, res: Response) => {
         const interviews = await Interview.findAll();
