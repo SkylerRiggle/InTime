@@ -19,6 +19,7 @@ const Interview = () => {
   const [interview, setInterview] = useState();
   const [avg, setAvg] = useState(0);
   const [entries, setEntries] = useState(0);
+  const [color, setColor] = useState();
 
   useEffect(() => {
     const load = async () => {
@@ -27,6 +28,10 @@ const Interview = () => {
       if (interviewData) {
         setInterview(interviewData);
       }
+
+      const company = await Req.get(`/company/${interviewData.companyId}`);
+      const color = company.color.toString(16);
+      setColor(color);
 
       const interviewDataPoints = await Req.getInterviewDataPoints(
         `/data/event/${Iid}`
@@ -56,7 +61,11 @@ const Interview = () => {
       </a>
       <hr />
 
-      <FrequencyChart title={"Application Response Frequency"} data={data} />
+      <FrequencyChart
+        title={"Application Response Frequency"}
+        data={data}
+        color={color}
+      />
 
       <div>Data Entries: {entries}</div>
       <div>Average Days Since Application: {avg}</div>
