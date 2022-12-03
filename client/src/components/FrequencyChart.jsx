@@ -7,20 +7,42 @@ const Grid = () => {
          backgroundImage: "repeating-linear-gradient(black 0 1px, transparent 1px 100%), repeating-linear-gradient(90deg, black 0 1px, transparent 1px 100%)",
          backgroundSize: "20px 20px",
          backgroundPosition: "bottom left"
-      }}/>
-   )
+      }} />
+   );
 }
 
 const Node = ({ x, y }) => {
    return (
       <div className="position-absolute bg-danger bottom-0"
-         style={{ width: '20px', top:`${100 - x}%`, left:`${y}%` }}
+         style={{ width: '20px', top: `${100 - x}%`, left: `${y}%` }}
       />
-   )
+   );
 }
 
 const Guides = ({ maxX, maxY }) => {
-   
+   const slices = 10;
+   const xVals = [];
+   const yVals = [];
+
+   return (
+      <>
+         <div className="position-absolute end-0 d-flex">
+            {xVals.map((value) => {
+               return (
+                  <div>{value}</div>
+               )
+            })}
+         </div>
+
+         <div className="position-absolute top-0">
+            {yVals.map((value) => {
+               return (
+                  <div>{value}</div>
+               )
+            })}
+         </div>
+      </>
+   );
 }
 
 const FrequencyChart = ({ title, data }) => {
@@ -55,8 +77,8 @@ const FrequencyChart = ({ title, data }) => {
             <div className="w-100 h-100 bg-light position-relative"
             style={{ border:'2px solid black' }}>
                <Grid />
-               {dataNodes}
                <Guides maxX={maxX} maxY={maxY} />
+               {dataNodes}
             </div>
          </div>
       </>
