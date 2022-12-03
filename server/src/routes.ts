@@ -62,6 +62,7 @@ root.group("/data", dataPoints => {
     dataPoints.post("/", async (req, res) => { return await DataPointsController.create(req, res); });
     dataPoints.put("/:id", async (req, res) => { return await DataPointsController.edit(req, res); });
     dataPoints.delete("/:id", async (req, res) => { return await DataPointsController.remove(req, res); });
+    dataPoints.get("/event/:eventId", async (req, res) =>{return await DataPointsController.getInterviewDataPoints(req, res);})
 });
 
 /**
