@@ -9,6 +9,9 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Req from "../utils/Req";
 import Logo from "../images/logo.png";
+import amazon from "../images/amazon.jpg";
+import google from "../images/google.jpg";
+import duolingo from "../images/duolingo.jpg";
 
 const InterviewCard = ({ cId, id, eventName, entries, creation, updated }) => {
   const navigate = useNavigate();
@@ -53,7 +56,15 @@ const Company = () => {
             }`,
           }}
         >
-          <img src={Logo} alt="Company-Logo" width="100%" />
+          <img
+            src={
+              company
+                ? require(`../images/${company.name.toLowerCase()}.jpg`)
+                : { Logo }
+            }
+            alt="Company-Logo"
+            width="100%"
+          />
         </div>
         <div className="w-75">
           <h2>{company ? company.name : "ERROR"}</h2>
