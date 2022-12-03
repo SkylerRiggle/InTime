@@ -12,16 +12,18 @@ import Req from "../utils/Req";
 const CompanyCard = ({ title, color, cId }) => {
   const navigate = useNavigate();
   return (
-    <div
-      className="border rounded p-2 m-2 outlineSwapGreen justify-content-center"
-      style={{
-        width: "300px",
-        borderColor: `#${color ? color : "ffffff"}`,
-        backgroundColor: `#${color ? color.toString(16) : "ffffff"}`,
-      }}
-      onClick={() => navigate(`/company/${cId}`)}
-    >
-      <h3>{title}</h3>
+    <div className="d-flex ">
+      <div
+        className="border rounded p-2 m-2 pt-3 pb-3 outlineSwapGreen d-flex justify-content-center"
+        style={{
+          width: "300px",
+          borderColor: `#${color ? color : "ffffff"}`,
+          backgroundColor: `#${color ? color.toString(16) : "ffffff"}`,
+        }}
+        onClick={() => navigate(`/company/${cId}`)}
+      >
+        <h3>{title}</h3>
+      </div>
     </div>
   );
 };
@@ -57,7 +59,7 @@ const Dashboard = () => {
       <h5>Joined: {new Date(user.createdAt).toDateString()}</h5>
       <hr />
 
-      <div>
+      <div className="justify-content-center center">
         {companies.map((company, i) => {
           return (
             <CompanyCard
