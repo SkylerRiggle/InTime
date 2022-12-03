@@ -33,18 +33,24 @@ const Guides = ({ maxX, maxY }) => {
 
    return (
       <>
-         <div className="position-absolute end-0 d-flex" style={{bottom:'-30px'}}>
-            {xVals.map((value, index) => {
+         <div>
+            {yVals.map((value, index) => {
                return (
-                  <div className="text-muted" key={`Row${index}`} style={{left:`${0}%`}}>{value}</div>
+                  <div className="position-absolute end-0 text-muted"
+                     key={`Row${index}`}
+                     style={{ left: `${90 - (index * slices)}%`, bottom:'-30px' }}>{value}
+                  </div>
                )
             })}
          </div>
 
-         <div className="position-absolute top-0" style={{left:'-50px'}}>
-            {yVals.map((value, index) => {
+         <div>
+            {xVals.map((value, index) => {
                return (
-                  <div className="text-muted" key={`Col${index}`} style={{bottom:`${0}%`}}>{value}</div>
+                  <div className="position-absolute text-muted"
+                     key={`Col${index}`}
+                     style={{ bottom: `${90 - (index * slices)}%`, left:'-40px' }}>{value}
+                  </div>
                )
             })}
          </div>
