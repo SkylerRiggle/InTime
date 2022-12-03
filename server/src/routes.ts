@@ -50,6 +50,8 @@ root.group("/interview", interviews => {
     interviews.post("/", async (req, res) => { return await InterviewsController.create(req, res); });
     interviews.put("/:id", async (req, res) => { return await InterviewsController.edit(req, res); });
     interviews.delete("/:id", async (req, res) => { return await InterviewsController.remove(req, res); });
+    //get average time from application to this interview stage for a company (param: eventId)
+    // interviews.get("/averageTime/:id", async(req, res) => {return await InterviewsController.getAverageTime(req, res)})
 });
 
 /** Data Routes */
@@ -60,6 +62,7 @@ root.group("/data", dataPoints => {
     dataPoints.post("/", async (req, res) => { return await DataPointsController.create(req, res); });
     dataPoints.put("/:id", async (req, res) => { return await DataPointsController.edit(req, res); });
     dataPoints.delete("/:id", async (req, res) => { return await DataPointsController.remove(req, res); });
+    dataPoints.get("/event/:eventId", async (req, res) =>{return await DataPointsController.getInterviewDataPoints(req, res);})
 });
 
 /**

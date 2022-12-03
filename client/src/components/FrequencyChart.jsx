@@ -52,30 +52,28 @@ const Guides = ({ maxX, maxY }) => {
    );
 }
 
-const FrequencyChart = ({ title, data }) => {
-   const [maxX, setX] = useState(-1);
-   const [maxY, setY] = useState(-1);
-   const [dataNodes, setNodes] = useState([]);
+const FrequencyChart = ({ title, data, color }) => {
+  const [maxX, setX] = useState(-1);
+  const [maxY, setY] = useState(-1);
+  const [dataNodes, setNodes] = useState([]);
 
-   useEffect(() => {
-      if (data) {
-         const maxX = data.maxValue;
-         setX(maxX);
-         const maxY = data.maxFrequency;
-         setY(maxY);
-         const set = data.getData;
+  useEffect(() => {
+    if (data) {
+      const maxX = data.maxValue;
+      setX(maxX);
+      const maxY = data.maxFrequency;
+      setY(maxY);
+      const set = data.getData;
 
-         const render = [];
-         for (const key in set) {
-            const xp = 90 * (set[key] / maxX);
-            const yp = 90 * (Number(key) / maxY);
-            render.push(
-               <Node x={xp} y={yp} key={key} />
-            )
-         }
-         setNodes(render);
+      const render = [];
+      for (const key in set) {
+        const xp = 90 * (set[key] / maxX);
+        const yp = 90 * (Number(key) / maxY);
+        render.push(<Node x={xp} y={yp} key={key} color={color} />);
       }
-   }, [data])
+      setNodes(render);
+    }
+  }, [data]);
 
    return (
       <>

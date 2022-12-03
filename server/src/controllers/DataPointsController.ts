@@ -17,13 +17,24 @@ module DataPointsController {
         return res.status(200).send(datapoint);
     }
 
+    // get all datapoints associated with an interview id
+    export const getInterviewDataPoints = async (req: Request, res: Response) => {
+        const id = req.params.eventId;
+
+        const datapoints = await Data.findAll({ where: { eventId: id } });
+        if (!datapoints) return res.status(404).send("Data not found.");
+        console.log(datapoints);
+        return res.status(200).send(datapoints);
+    }
+
+
     /** Create a new datapoint */
     export const create = async (req: Request, res: Response) => {
+        const date = req.body.date; //8/17/22 - days passed since application = find application date
         try {
             const datapoint = await Data.create({
-                date: req.body.date,
+                date: req.body.date,    //07/14/20
                 daysSinceApplication: req.body.daysSinceApplication,
-                responseData: req.body.responseData,
                 eventId: req.body.eventId,
                 userId: req.body.userId
             });
