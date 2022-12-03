@@ -11,10 +11,10 @@ const Grid = () => {
    );
 }
 
-const Node = ({ x, y }) => {
+const Node = ({ x, y, color }) => {
    return (
-      <div className="position-absolute bg-danger bottom-0"
-         style={{ width: '20px', top: `${100 - x}%`, left: `${y}%` }}
+      <div className="position-absolute border border-dark bottom-0"
+         style={{ width: '20px', top: `${100 - x}%`, left: `${y}%`, backgroundColor:`#${color ? color : 'ffffff'}` }}
       />
    );
 }
@@ -27,16 +27,16 @@ const Guides = ({ maxX, maxY }) => {
    const xSlice = -maxX / slices;
    const ySlice = -maxY / slices;
    for (var i = 0; i < slices; i++) {
-      xVals.push(Math.round(100 * (maxX + xSlice)) / 100);
-      yVals.push(Math.round(100 * (maxY + ySlice)) / 100);
+      xVals.push(Math.round(100 * (maxX + i * xSlice)) / 100);
+      yVals.push(Math.round(100 * (maxY + i * ySlice)) / 100);
    }
 
    return (
       <>
-         <div className="position-absolute end-0 d-flex" style={{bottom:'-50px'}}>
+         <div className="position-absolute end-0 d-flex" style={{bottom:'-30px'}}>
             {xVals.map((value, index) => {
                return (
-                  <div className="text-muted" key={value} style={{left:`${0}%`}}>{value}</div>
+                  <div className="text-muted" key={`Row${index}`} style={{left:`${0}%`}}>{value}</div>
                )
             })}
          </div>
@@ -44,7 +44,7 @@ const Guides = ({ maxX, maxY }) => {
          <div className="position-absolute top-0" style={{left:'-50px'}}>
             {yVals.map((value, index) => {
                return (
-                  <div className="text-muted" key={value} style={{bottom:`${0}%`}}>{value}</div>
+                  <div className="text-muted" key={`Col${index}`} style={{bottom:`${0}%`}}>{value}</div>
                )
             })}
          </div>
@@ -73,7 +73,7 @@ const FrequencyChart = ({ title, data, color }) => {
       }
       setNodes(render);
     }
-  }, [data]);
+  }, [data, color]);
 
    return (
       <>

@@ -10,12 +10,10 @@ import { useParams } from "react-router-dom";
 import Req from "../utils/Req";
 import FrequencyMap from "../utils/FrequencyMap";
 import FrequencyChart from "../components/FrequencyChart";
-import axios from "axios";
 
 const Interview = () => {
   const [data, setData] = useState(new FrequencyMap());
   const { Iid, id } = useParams();
-  const [interviewDataPoints, setInterviewDataPoints] = useState();
   const [interview, setInterview] = useState();
   const [avg, setAvg] = useState(0);
   const [entries, setEntries] = useState(0);
@@ -33,19 +31,15 @@ const Interview = () => {
       const color = company.color.toString(16);
       setColor(color);
 
-      const interviewDataPoints = await Req.getInterviewDataPoints(
-        `/data/event/${Iid}`
-      );
-      console.log(interviewDataPoints);
-
-      if (interviewDataPoints) {
-        // console.log(`HERE, interview data points: ${interviewData.rollingSum}`);
-        setInterviewDataPoints(interviewDataPoints);
+      if (interviewData.dataPoints && interviewData.rollingSum > 0) {
         const dataValues = new FrequencyMap();
-        interviewDataPoints.forEach((element) => {
+        var sum = 0
+        interviewData.dataPoints.forEach((element) => {
           dataValues.addData(element.daysSinceApplication);
+          sum += element.daysSinceApplication;
         });
-        // setAvg(sum / interviewData.rollingSum);
+        setAvg(sum / interviewData.rollingSum);
+        setEntries(interviewData.rollingSum);
         setData(dataValues);
       }
     };
