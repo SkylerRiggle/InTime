@@ -42,11 +42,17 @@ const Interview = () => {
         // console.log(`HERE, interview data points: ${interviewData.rollingSum}`);
         setInterviewDataPoints(interviewDataPoints);
         const dataValues = new FrequencyMap();
+
+        var numDataPoints = interviewDataPoints.length;
+        var sum = 0;
+
         interviewDataPoints.forEach((element) => {
           dataValues.addData(element.daysSinceApplication);
+          sum += element.daysSinceApplication;
         });
-        // setAvg(sum / interviewData.rollingSum);
+        setAvg(sum / numDataPoints);
         setData(dataValues);
+        setEntries(numDataPoints);
       }
     };
 
