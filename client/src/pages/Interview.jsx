@@ -15,33 +15,33 @@ import axios from "axios";
 const Interview = () => {
   const [data, setData] = useState(new FrequencyMap());
   const { Iid, id } = useParams();
+  const [interviewDataPoints, setInterviewDataPoints] = useState();
   const [interview, setInterview] = useState();
   const [avg, setAvg] = useState(0);
   const [entries, setEntries] = useState(0);
 
   useEffect(() => {
     const load = async () => {
+      //get name of interview based on id
+      const interviewData = await Req.get(`/interview/${Iid}`);
+      if (interviewData) {
+        setInterview(interviewData);
+      }
+
       const interviewDataPoints = await Req.getInterviewDataPoints(
         `/data/event/${Iid}`
       );
       console.log(interviewDataPoints);
 
-      const interviewData = await Req.get(`/interview/${Iid}`);
-      if (interviewData) {
-        console.log(`HERE, interview data points: ${interviewData.rollingSum}`);
-        setInterview(interviewData);
-        setEntries(interviewData.rollingSum);
-
-        if (interviewData.dataPoints && interviewData.rollingSum > 0) {
-          let sum = 0;
-          const dataValues = new FrequencyMap();
-          interviewData.dataPoints.forEach((element) => {
-            sum += element.daysSinceApplication;
-            dataValues.addData(element.daysSinceApplication);
-          });
-          setAvg(sum / interviewData.rollingSum);
-          setData(dataValues);
-        }
+      if (interviewDataPoints) {
+        // console.log(`HERE, interview data points: ${interviewData.rollingSum}`);
+        setInterviewDataPoints(interviewDataPoints);
+        const dataValues = new FrequencyMap();
+        interviewDataPoints.forEach((element) => {
+          dataValues.addData(element.daysSinceApplication);
+        });
+        // setAvg(sum / interviewData.rollingSum);
+        setData(dataValues);
       }
     };
 
